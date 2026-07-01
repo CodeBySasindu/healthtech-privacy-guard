@@ -8,15 +8,15 @@ This repository provides a production-ready, continuous security regression test
 
 🚀 Key Features
 
-Network-Level Interception: Audits raw network payloads directly in the browser layer using Playwright.
+Network-Level Interception: Audits raw network payloads directly in the browser layer using Playwright's page.route and page.waitForResponse.
 
 Deep JSON Key Flattening: Recursively flattens deeply nested structural objects to ensure no blacklisted fields escape detection.
 
-Custom Blacklists: Configurable monitoring rules to look for PII (Personally Identifiable Information) and PHI (Protected Health Information).
+Sub-String Blacklist Matching: Leverages advanced array checking to intercept partial matches (e.g., catching patient_ssn or ssn_number when blacklisting ssn).
+
+Zero-Dependency Headless Testing: Pre-configured with simulated routing so tests run and pass inside clean GitHub Actions runners without requiring a live database or running web server.
 
 Ready-to-Use CI/CD: Native integration with GitHub Actions (.github/workflows/playwright.yml) to automatically fail Pull Requests on data-exposure events.
-
-Written in TypeScript: Fully typed implementation offering standard linting and IDE autocomplete support out of the box.
 
 🛠️ Local Quickstart
 
@@ -58,7 +58,7 @@ npx playwright test --headed
 
 ⚙️ Configuration & Tailoring
 
-To audit your own healthcare applications, navigate to tests/api-privacy-guard.spec.ts and modify the following sections:
+To audit your own healthcare applications, navigate to tests/api-privacy-guard.spec.ts and customize the parameters:
 
 1. Add Custom Blacklist Rules
 
@@ -75,14 +75,20 @@ const PII_BLACK_LIST = [
 ];
 
 
-2. Define Your Network Target Filters
+2. Integrate with Your Active Dev/Staging Server
 
-Update the URL intercept path to match your target backend endpoints:
+When you are ready to transition from mock telemetry to intercepting traffic on a live environment:
 
-// Intercepts traffic destined to any endpoint containing this relative path
-if (response.url().includes('/api/v1/appointments')) {
-  // ... test assertions
-}
+Remove the local page.route mocking block in tests/api-privacy-guard.spec.ts.
+
+Update the navigation route from https://example.com to your staging host or frontend router:
+
+await page.goto('/dashboard/appointments/view?id=mock-992');
+
+
+Set your target backend URL identifier in the response checker:
+
+if (response.url().includes('/api/v1/appointments')) { ... }
 
 
 🔗 CI/CD Pipeline Integration

@@ -26,46 +26,46 @@ Ensure you have [Node.js](https://nodejs.org/) (LTS version) installed on your m
 
 > 💡 **Windows PowerShell Note:** If you run into script execution errors when executing \`npm\` scripts on Windows, open PowerShell as an Administrator and execute:
 >
-> \`\`\`powershell
+> ```powershell
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-> \`\`\`
+> ```
 
 ### 1. Clone the Repository
 
 Clone your target repository directly from GitHub (replace \`YOUR_GITHUB_USERNAME\` with your actual username):
 
-\`\`\`bash
+```bash
 git clone https://github.com/YOUR_GITHUB_USERNAME/healthtech-privacy-guard.git
 cd healthtech-privacy-guard
-\`\`\`
+```
 
 ### 2. Install Project Dependencies
 
-\`\`\`bash
+```bash
 npm install
-\`\`\`
+```
 
 ### 3. Install Playwright Browsers
 
 Download the required browser engines:
 
-\`\`\`bash
+```bash
 npx playwright install
-\`\`\`
+```
 
 ### 4. Run the Privacy Validation Suite
 
 Execute your test suite locally:
 
-\`\`\`bash
+```bash
 npx playwright test
-\`\`\`
+```
 
 To run the tests with a visible browser UI:
 
-\`\`\`bash
+```bash
 npx playwright test --headed
-\`\`\`
+```
 
 ---
 
@@ -77,7 +77,7 @@ To audit your own healthcare applications, navigate to \`tests/api-privacy-guard
 
 Add or remove sensitive database keys from the \`PII_BLACK_LIST\` array:
 
-\`\`\`typescript
+```typescript
 const PII_BLACK_LIST = [
   'ssn',
   'social_security',
@@ -87,7 +87,7 @@ const PII_BLACK_LIST = [
   'tax_id',
   'medical_history'
 ];
-\`\`\`
+```
 
 The matching mechanism evaluates substrings. For example, if \`'ssn'\` is blacklisted, keys like \`'patient_ssn'\`, \`'ssn_number'\`, or \`'ssn_hash'\` will be automatically caught and flagged.
 
@@ -98,15 +98,15 @@ When you are ready to transition from mock telemetry to intercepting traffic on 
 1. **Remove the local network mock:** Delete the \`page.route\` block in \`tests/api-privacy-guard.spec.ts\`.
 2. **Update the navigation target:** Change the navigation route from \`https://example.com\` to your staging host or frontend router:
 
-   \`\`\`typescript
+   ```typescript
    await page.goto('/dashboard/appointments/view?id=mock-992');
-   \`\`\`
+   ```
 
 3. **Set your API target route:** Update your backend URL identifier inside the response checker:
 
-   \`\`\`typescript
+   ```typescript
    if (response.url().includes('/api/v1/appointments')) { ... }
-   \`\`\`
+   ```
 
 ---
 

@@ -72,8 +72,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://localhost:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
+  // command: 'npm run start', // The command to start your frontend/backend server
+  url: 'http://localhost:3000', // The URL your app runs on
+  reuseExistingServer: !process.env.CI,
+},
 });

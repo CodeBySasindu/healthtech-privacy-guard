@@ -32,10 +32,10 @@ Ensure you have [Node.js](https://nodejs.org/) (LTS version) installed on your m
 
 ### 1. Clone the Repository
 
-Clone your target repository directly from GitHub (replace \`YOUR_GITHUB_USERNAME\` with your actual username):
+Clone your target repository directly from GitHub
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/healthtech-privacy-guard.git
+git clone https://github.com/CodeBySasindu/healthtech-privacy-guard.git
 cd healthtech-privacy-guard
 ```
 

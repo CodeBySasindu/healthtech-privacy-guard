@@ -128,4 +128,4 @@ To integrate this check into your current active codebase, simply copy the \`.gi
 
 ## 📜 License
 
-Distributed under the [MIT License](LICENSE). See [LICENSE](LICENSE) for more information.`;
+Distributed under the [MIT License](LICENSE). See [LICENSE](LICENSE) for more information.

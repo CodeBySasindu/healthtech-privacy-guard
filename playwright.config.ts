@@ -76,4 +76,4 @@ export default defineConfig({
   url: 'http://localhost:3000', // The URL your app runs on
   reuseExistingServer: !process.env.CI,
 },
-});
+);

@@ -2,7 +2,7 @@ HealthTech Privacy Guard 🛡️
 
 Automated PII and PHI leakage detection for healthcare APIs using **Playwright**, **TypeScript**, and **GitHub Actions**.
 
-In healthcare systems, a passing functional test suite is not enough. If your backend APIs are over-fetching data—returning unmasked Social Security Numbers (SSNs), diagnostic codes, or clinical notes that the frontend simply hides—your platform is exposing patients to privacy risks and violating **HIPAA** or **GDPR** regulations.
+In healthcare systems, a passing functional test suite is not enough. If your backend APIs are over fetching data, returning unmasked Social Security Numbers (SSNs), diagnostic codes, or clinical notes that the frontend simply hides, your platform is exposing patients to privacy risks and violating **HIPAA** or **GDPR** regulations.
 
 This repository provides a production-ready, continuous security regression test that intercepts outgoing network requests, flattens incoming JSON data, and checks against a strict blacklist of data variables before they can leak onto a client browser.
 
